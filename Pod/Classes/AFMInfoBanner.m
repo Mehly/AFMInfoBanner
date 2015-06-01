@@ -55,6 +55,21 @@ static const CGFloat kDefaultHideInterval = 2.0;
     return self;
 }
 
+- (instancetype)initWithText:(NSString *)text style:(AFMInfoBannerStyle)style inViewController:(UIViewController*)viewController
+{
+    self = [super init];
+    if(self) {
+        
+        [self setUp];
+        
+        [self setText:text];
+        [self setStyle:style];
+        
+        _hostingViewController = viewController;
+    }
+    return self;
+}
+
 - (void)setStyle:(AFMInfoBannerStyle)style
 {
     _style = style;
@@ -211,7 +226,15 @@ static const CGFloat kDefaultHideInterval = 2.0;
 {
     CVKHierarchySearcher *searcher = [[CVKHierarchySearcher alloc] init];
     UIViewController *topmostVC = [searcher topmostViewController];
-    UINavigationBar *possibleBar = [self navigationBarFor:topmostVC];
+    
+    UINavigationBar *possibleBar = nil;
+    
+    if(self.hostingViewController) {
+        possibleBar = self.hostingViewController.navigationController.navigationBar;
+    } else {
+        possibleBar = [self navigationBarFor:topmostVC];
+    }
+    
     if (possibleBar) {
         [self setupViewsForNavigationBar:possibleBar];
     } else {

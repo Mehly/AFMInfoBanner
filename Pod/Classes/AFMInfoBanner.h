@@ -24,6 +24,8 @@ typedef NS_ENUM(NSUInteger, AFMInfoBannerStyle) {
 @property (nonatomic) UIColor *errorTextColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic) UIColor *infoTextColor UI_APPEARANCE_SELECTOR;
 
+- (instancetype)initWithText:(NSString *)text style:(AFMInfoBannerStyle)style inViewController:(UIViewController*)viewController;
+
 - (void)show:(BOOL)animated;
 - (void)hide:(BOOL)animated;
 
