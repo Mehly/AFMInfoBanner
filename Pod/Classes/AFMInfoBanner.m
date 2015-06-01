@@ -27,6 +27,7 @@ static const CGFloat kDefaultHideInterval = 2.0;
 
 @interface AFMInfoBanner ()
 
+@property (nonatomic) UIViewController *hostingViewController;
 @property (nonatomic) UILabel *textLabel;
 @property (nonatomic) UIView *targetView;
 @property (nonatomic) UIView *viewAboveBanner;
